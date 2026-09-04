@@ -4,7 +4,7 @@ from datetime import timedelta
 from typing import Any, Dict
 
 from cognite.client import CogniteClient
-from cognite.client.data_classes.data_modeling import NodeId, ViewId
+from cognite.client.data_classes.data_modeling import NodeId
 from cognite.client.data_classes.data_modeling.cdm.v1 import CogniteAsset, CogniteTimeSeries, CogniteTimeSeriesApply
 from cognite.client.data_classes.filters import Prefix, ContainsAny
 from cognite.client.exceptions import CogniteNotFoundError
@@ -51,8 +51,7 @@ def get_time_series_for_site(client: CogniteClient, site, space):
     value_list = [{"space": node.space, "externalId": node.external_id} for node in sub_tree_nodes]
 
     time_series = [
-        client.data_modeling.instances.search(
-            view=ViewId("cdf_cdm", "CogniteTimeSeries", "v1"),
+        client.data_modeling.instances.list(
             instance_type=CogniteTimeSeries,
             space=space,
             filter=ContainsAny(property=["cdf_cdm", "CogniteTimeSeries/v1", "assets"], values=batch),
