@@ -1,0 +1,5 @@
+externalId: ep_icapi_datapoints
+name: Ice Cream API Datapoints
+dataSetExternalId: {{ icapi_ds_external_id }}
+description: Datapoints extraction from the Ice Cream Factory API, run by the icapi_datapoints_extractor function.
+source: Ice Cream Factory API
